@@ -218,7 +218,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
   Widget build(BuildContext context) {
     position = widget.offset;
     final contentOrientation = findPositionForContent(position!);
-    const contentOffsetMultiplier = -0.5;
+    const contentOffsetMultiplier = -0.85;
     isArrowUp = contentOffsetMultiplier == 1.0;
 
     final contentY = isArrowUp
