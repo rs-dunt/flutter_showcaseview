@@ -60,7 +60,7 @@ class GetPosition {
   ///Get the bottom position of the widget
   double getBottom() {
     final box = key!.currentContext!.findRenderObject() as RenderBox;
-    final boxOffset = box.localToGlobal(const Offset(-20, -20));
+    final boxOffset = box.localToGlobal(const Offset(-50, -50));
     if (boxOffset.dy.isNaN) return padding.bottom;
     final bottomRight = box.size.bottomRight(boxOffset);
     return bottomRight.dy + padding.bottom;
