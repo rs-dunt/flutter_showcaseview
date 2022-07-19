@@ -63,7 +63,7 @@ class GetPosition {
     final boxOffset = box.localToGlobal(const Offset(-50, -50));
     if (boxOffset.dy.isNaN) return padding.bottom;
     final bottomRight = box.size.bottomRight(boxOffset);
-    return bottomRight.dy + padding.bottom;
+    return bottomRight.dy;
   }
 
   ///Get the top position of the widget
