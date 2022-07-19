@@ -52,6 +52,7 @@ class Showcase extends StatefulWidget {
   final Color textColor;
   final Widget scrollLoadingWidget;
   final bool showArrow;
+  final bool justShowAbove;
   final double? height;
   final double? width;
   final Duration animationDuration;
@@ -97,6 +98,7 @@ class Showcase extends StatefulWidget {
     this.blurValue,
     this.radius,
     this.onTargetLongPress,
+    this.justShowAbove = false,
     this.onTargetDoubleTap,
   })  : height = null,
         width = null,
@@ -141,6 +143,7 @@ class Showcase extends StatefulWidget {
     this.blurValue,
     this.onTargetLongPress,
     this.onTargetDoubleTap,
+    this.justShowAbove = false
   })  : showArrow = false,
         onToolTipClick = null,
         assert(overlayOpacity >= 0.0 && overlayOpacity <= 1.0,

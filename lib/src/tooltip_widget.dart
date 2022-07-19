@@ -45,6 +45,7 @@ class ToolTipWidget extends StatefulWidget {
   final EdgeInsets? contentPadding;
   final Duration animationDuration;
   final bool disableAnimation;
+  final bool justShowAbove;
 
   const ToolTipWidget({
     required this.position,
@@ -64,6 +65,7 @@ class ToolTipWidget extends StatefulWidget {
     required this.animationDuration,
     this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
     required this.disableAnimation,
+    this.justShowAbove = false,
   });
 
   @override
@@ -218,7 +220,11 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
   Widget build(BuildContext context) {
     position = widget.offset;
     final contentOrientation = findPositionForContent(position!);
-    const contentOffsetMultiplier = -0.85;
+    final contentOffsetMultiplier = widget.justShowAbove
+        ? -0.85
+        : contentOrientation == "BELOW"
+            ? 1.0
+            : -1.0;
     isArrowUp = contentOffsetMultiplier == 1.0;
 
     final contentY = isArrowUp
