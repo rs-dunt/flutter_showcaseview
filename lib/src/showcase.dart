@@ -116,35 +116,35 @@ class Showcase extends StatefulWidget {
                 : (onTargetClick == null ? false : true),
             "onTargetClick is required if you're using disposeOnTap");
 
-  const Showcase.withWidget({
-    required this.key,
-    required this.child,
-    required this.container,
-    required this.height,
-    required this.width,
-    this.title,
-    this.description,
-    this.shapeBorder,
-    this.overlayColor = Colors.black45,
-    this.radius,
-    this.overlayOpacity = 0.75,
-    this.titleTextStyle,
-    this.descTextStyle,
-    this.showcaseBackgroundColor = Colors.white,
-    this.textColor = Colors.black,
-    this.scrollLoadingWidget = const CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation(Colors.white)),
-    this.onTargetClick,
-    this.disposeOnTap,
-    this.animationDuration = const Duration(milliseconds: 2000),
-    this.disableAnimation,
-    this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
-    this.overlayPadding = EdgeInsets.zero,
-    this.blurValue,
-    this.onTargetLongPress,
-    this.onTargetDoubleTap,
-    this.justShowAbove = false
-  })  : showArrow = false,
+  const Showcase.withWidget(
+      {required this.key,
+      required this.child,
+      required this.container,
+      required this.height,
+      required this.width,
+      this.title,
+      this.description,
+      this.shapeBorder,
+      this.overlayColor = Colors.black45,
+      this.radius,
+      this.overlayOpacity = 0.75,
+      this.titleTextStyle,
+      this.descTextStyle,
+      this.showcaseBackgroundColor = Colors.white,
+      this.textColor = Colors.black,
+      this.scrollLoadingWidget = const CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation(Colors.white)),
+      this.onTargetClick,
+      this.disposeOnTap,
+      this.animationDuration = const Duration(milliseconds: 2000),
+      this.disableAnimation,
+      this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
+      this.overlayPadding = EdgeInsets.zero,
+      this.blurValue,
+      this.onTargetLongPress,
+      this.onTargetDoubleTap,
+      this.justShowAbove = false})
+      : showArrow = false,
         onToolTipClick = null,
         assert(overlayOpacity >= 0.0 && overlayOpacity <= 1.0,
             "overlay opacity must be between 0 and 1.");
@@ -279,7 +279,7 @@ class _ShowcaseState extends State<Showcase> {
                 child: ClipPath(
                   clipper: RRectClipper(
                     area: _isScrollRunning ? Rect.zero : rectBound,
-                    isCircle: widget.shapeBorder == CircleBorder(),
+                    isCircle: widget.shapeBorder == const CircleBorder(),
                     radius:
                         _isScrollRunning ? BorderRadius.zero : widget.radius,
                     overlayPadding: _isScrollRunning
@@ -335,6 +335,7 @@ class _ShowcaseState extends State<Showcase> {
                   contentHeight: widget.height,
                   contentWidth: widget.width,
                   onTooltipTap: _getOnTooltipTap,
+                  justShowAbove: widget.justShowAbove,
                   contentPadding: widget.contentPadding,
                   disableAnimation: widget.disableAnimation ??
                       showCaseWidgetState.disableAnimation,
@@ -342,7 +343,7 @@ class _ShowcaseState extends State<Showcase> {
                 ),
             ],
           )
-        : SizedBox.shrink();
+        : const SizedBox.shrink();
   }
 }
 
@@ -355,7 +356,7 @@ class _TargetWidget extends StatelessWidget {
   final ShapeBorder? shapeBorder;
   final BorderRadius? radius;
 
-  _TargetWidget({
+  const _TargetWidget({
     Key? key,
     required this.offset,
     this.size,
@@ -384,7 +385,7 @@ class _TargetWidget extends StatelessWidget {
               shape: radius != null
                   ? RoundedRectangleBorder(borderRadius: radius!)
                   : shapeBorder ??
-                      RoundedRectangleBorder(
+                      const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(8),
                         ),
