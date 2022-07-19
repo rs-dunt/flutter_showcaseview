@@ -46,7 +46,7 @@ class ToolTipWidget extends StatefulWidget {
   final Duration animationDuration;
   final bool disableAnimation;
 
-  ToolTipWidget({
+  const ToolTipWidget({
     required this.position,
     required this.offset,
     required this.screenSize,
@@ -218,7 +218,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
   Widget build(BuildContext context) {
     position = widget.offset;
     final contentOrientation = findPositionForContent(position!);
-    final contentOffsetMultiplier = contentOrientation == "BELOW" ? 1.0 : -1.0;
+    const contentOffsetMultiplier = -1.0;
     isArrowUp = contentOffsetMultiplier == 1.0;
 
     final contentY = isArrowUp
@@ -236,8 +236,8 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
       paddingBottom = 10;
     }
 
-    final arrowWidth = 18.0;
-    final arrowHeight = 9.0;
+    const arrowWidth = 18.0;
+    const arrowHeight = 9.0;
 
     if (widget.container == null) {
       return Positioned(
@@ -249,7 +249,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
           child: SlideTransition(
             position: Tween<Offset>(
               begin: Offset(0.0, contentFractionalOffset / 10),
-              end: Offset(0.0, 0.100),
+              end: const Offset(0.0, 0.100),
             ).animate(_curvedAnimation),
             child: Material(
               color: Colors.transparent,
@@ -287,7 +287,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                             paintingStyle: PaintingStyle.fill,
                             isUpArrow: isArrowUp,
                           ),
-                          child: SizedBox(
+                          child: const SizedBox(
                             height: arrowHeight,
                             width: arrowWidth,
                           ),
@@ -327,7 +327,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                                       ),
                                                     ),
                                           )
-                                        : SizedBox(),
+                                        : const SizedBox(),
                                     Text(
                                       widget.description!,
                                       style: widget.descTextStyle ??
@@ -367,8 +367,8 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                 position: Tween<Offset>(
                   begin: Offset(0.0, contentFractionalOffset / 10),
                   end: !widget.showArrow && !isArrowUp
-                      ? Offset(0.0, 0.0)
-                      : Offset(0.0, 0.100),
+                      ? const Offset(0.0, 0.0)
+                      : const Offset(0.0, 0.100),
                 ).animate(_curvedAnimation),
                 child: Material(
                   color: Colors.transparent,

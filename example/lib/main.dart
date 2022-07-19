@@ -181,6 +181,7 @@ class _MailPageState extends State<MailPage> {
                                     Showcase(
                                       key: _one,
                                       description: 'Tap to see menu options',
+                                      shapeBorder: const CircleBorder(),
                                       child: Icon(
                                         Icons.menu,
                                         color: Theme.of(context).primaryColor,
