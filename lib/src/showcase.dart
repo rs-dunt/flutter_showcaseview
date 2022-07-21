@@ -63,6 +63,7 @@ class Showcase extends StatefulWidget {
   final EdgeInsets overlayPadding;
   final VoidCallback? onTargetDoubleTap;
   final VoidCallback? onTargetLongPress;
+  final VoidCallback? onTapOut;
 
   /// Defines blur value.
   /// This will blur the background while displaying showcase.
@@ -100,6 +101,7 @@ class Showcase extends StatefulWidget {
     this.onTargetLongPress,
     this.justShowAbove = false,
     this.onTargetDoubleTap,
+    this.onTapOut,
   })  : height = null,
         width = null,
         container = null,
@@ -116,35 +118,36 @@ class Showcase extends StatefulWidget {
                 : (onTargetClick == null ? false : true),
             "onTargetClick is required if you're using disposeOnTap");
 
-  const Showcase.withWidget(
-      {required this.key,
-      required this.child,
-      required this.container,
-      required this.height,
-      required this.width,
-      this.title,
-      this.description,
-      this.shapeBorder,
-      this.overlayColor = Colors.black45,
-      this.radius,
-      this.overlayOpacity = 0.75,
-      this.titleTextStyle,
-      this.descTextStyle,
-      this.showcaseBackgroundColor = Colors.white,
-      this.textColor = Colors.black,
-      this.scrollLoadingWidget = const CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation(Colors.white)),
-      this.onTargetClick,
-      this.disposeOnTap,
-      this.animationDuration = const Duration(milliseconds: 2000),
-      this.disableAnimation,
-      this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
-      this.overlayPadding = EdgeInsets.zero,
-      this.blurValue,
-      this.onTargetLongPress,
-      this.onTargetDoubleTap,
-      this.justShowAbove = false})
-      : showArrow = false,
+  const Showcase.withWidget({
+    required this.key,
+    required this.child,
+    required this.container,
+    required this.height,
+    required this.width,
+    this.title,
+    this.description,
+    this.shapeBorder,
+    this.overlayColor = Colors.black45,
+    this.radius,
+    this.overlayOpacity = 0.75,
+    this.titleTextStyle,
+    this.descTextStyle,
+    this.showcaseBackgroundColor = Colors.white,
+    this.textColor = Colors.black,
+    this.scrollLoadingWidget = const CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation(Colors.white)),
+    this.onTargetClick,
+    this.disposeOnTap,
+    this.animationDuration = const Duration(milliseconds: 2000),
+    this.disableAnimation,
+    this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
+    this.overlayPadding = EdgeInsets.zero,
+    this.blurValue,
+    this.onTargetLongPress,
+    this.onTargetDoubleTap,
+    this.justShowAbove = false,
+    this.onTapOut,
+  })  : showArrow = false,
         onToolTipClick = null,
         assert(overlayOpacity >= 0.0 && overlayOpacity <= 1.0,
             "overlay opacity must be between 0 and 1.");
@@ -298,12 +301,15 @@ class _ShowcaseState extends State<Showcase> {
                             ),
                           ),
                         )
-                      : Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height,
-                          decoration: BoxDecoration(
-                            color: widget.overlayColor
-                                .withOpacity(widget.overlayOpacity),
+                      : InkWell(
+                          onTap: widget.onTapOut,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height,
+                            decoration: BoxDecoration(
+                              color: widget.overlayColor
+                                  .withOpacity(widget.overlayOpacity),
+                            ),
                           ),
                         ),
                 ),
