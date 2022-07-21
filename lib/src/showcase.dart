@@ -63,7 +63,7 @@ class Showcase extends StatefulWidget {
   final EdgeInsets overlayPadding;
   final VoidCallback? onTargetDoubleTap;
   final VoidCallback? onTargetLongPress;
-  final VoidCallback? onTapOut;
+  final ValueChanged<bool>? isDissmissShowCase;
 
   /// Defines blur value.
   /// This will blur the background while displaying showcase.
@@ -101,7 +101,7 @@ class Showcase extends StatefulWidget {
     this.onTargetLongPress,
     this.justShowAbove = false,
     this.onTargetDoubleTap,
-    this.onTapOut,
+    this.isDissmissShowCase,
   })  : height = null,
         width = null,
         container = null,
@@ -146,7 +146,7 @@ class Showcase extends StatefulWidget {
     this.onTargetLongPress,
     this.onTargetDoubleTap,
     this.justShowAbove = false,
-    this.onTapOut,
+    this.isDissmissShowCase,
   })  : showArrow = false,
         onToolTipClick = null,
         assert(overlayOpacity >= 0.0 && overlayOpacity <= 1.0,
@@ -163,6 +163,14 @@ class _ShowcaseState extends State<Showcase> {
   GetPosition? position;
 
   ShowCaseWidgetState get showCaseWidgetState => ShowCaseWidget.of(context);
+
+  @override
+  void dispose() {
+    if (widget.isDissmissShowCase != null) {
+      widget.isDissmissShowCase!(true);
+    }
+    super.dispose();
+  }
 
   @override
   void didChangeDependencies() {
