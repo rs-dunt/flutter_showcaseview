@@ -46,6 +46,7 @@ class ToolTipWidget extends StatefulWidget {
   final Duration animationDuration;
   final bool disableAnimation;
   final bool justShowAbove;
+  final ValueChanged<bool>? isDissmissToolTip;
 
   const ToolTipWidget({
     required this.position,
@@ -66,6 +67,7 @@ class ToolTipWidget extends StatefulWidget {
     this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
     required this.disableAnimation,
     this.justShowAbove = false,
+    this.isDissmissToolTip,
   });
 
   @override
@@ -212,7 +214,9 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
   @override
   void dispose() {
     _parentController.dispose();
-
+    if (widget.isDissmissToolTip != null) {
+      widget.isDissmissToolTip!(true);
+    }
     super.dispose();
   }
 
