@@ -165,11 +165,11 @@ class _ShowcaseState extends State<Showcase> {
   ShowCaseWidgetState get showCaseWidgetState => ShowCaseWidget.of(context);
 
   @override
-  void dispose() {
+  void deactivate() {
     if (widget.isDissmissShowCase != null) {
       widget.isDissmissShowCase!(true);
     }
-    super.dispose();
+    super.deactivate();
   }
 
   @override
