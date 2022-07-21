@@ -301,15 +301,12 @@ class _ShowcaseState extends State<Showcase> {
                             ),
                           ),
                         )
-                      : InkWell(
-                          onTap: widget.onTapOut,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height,
-                            decoration: BoxDecoration(
-                              color: widget.overlayColor
-                                  .withOpacity(widget.overlayOpacity),
-                            ),
+                      : Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height,
+                          decoration: BoxDecoration(
+                            color: widget.overlayColor
+                                .withOpacity(widget.overlayOpacity),
                           ),
                         ),
                 ),
